@@ -87,7 +87,7 @@ public class AirportService {
     }
 
     public int calculateFlightFare(Integer flightId){
-        int numberOfPassengers = flightRepository.getPassengersForParticularFlight(flightId).size();
+        int numberOfPassengers = flightRepository.getPassengersForParticularFlight(flightId) != null ? flightRepository.getPassengersForParticularFlight(flightId).size() : 0;
 
         return 3000 + numberOfPassengers * 50;
     }
@@ -101,11 +101,20 @@ public class AirportService {
 
         Flight flight = flightRepository.getFlightById(flightId);
 
-        if (passengersBooked.size() == flight.getMaxCapacity() || passengersBooked.contains(passengerId)) {
-            return "FAILURE";
+        if (passengersBooked != null) {
+            if (passengersBooked.contains(passengerId) || passengersBooked.size() == flight.getMaxCapacity()) {
+
+                return "FAILURE";
+            } else {
+                passengersBooked.add(passengerId);
+            }
         }
 
-        passengersBooked.add(passengerId);
+        if (passengersBooked == null) {
+            passengersBooked = new ArrayList<>();
+            passengersBooked.add(passengerId);
+        }
+
         flightRepository.getFlightBookingsHashMap().put(flightId, passengersBooked);
 
         return "SUCCESS";
@@ -116,7 +125,7 @@ public class AirportService {
 
         Flight flight = flightRepository.getFlightById(flightId);
 
-        if (passengersBooked.contains(passengerId)) {
+        if (passengersBooked != null && passengersBooked.contains(passengerId)) {
             passengersBooked.remove(passengerId);
 
             return "SUCCESS";
@@ -157,7 +166,8 @@ public class AirportService {
     }
 
     public int calculateRevenueOfAFlight(Integer flightId){
-        int numberOfPassengers = flightRepository.getPassengersForParticularFlight(flightId).size();
+        int numberOfPassengers = flightRepository.getPassengersForParticularFlight(flightId) != null ? flightRepository.getPassengersForParticularFlight(flightId).size() : 0;
+
         int total = 0, count = numberOfPassengers;
 
         for (int i = 0; i < numberOfPassengers; i++) {

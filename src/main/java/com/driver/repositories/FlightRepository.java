@@ -73,9 +73,9 @@ public class FlightRepository {
     }
 
     public List<Integer> getPassengersForParticularFlight(Integer flightId) {
-        if (flightBookingsHashMap.isEmpty()) return null;
+        if (flightBookingsHashMap.isEmpty() || !flightBookingsHashMap.containsKey(flightId)) return null;
 
-        return flightBookingsHashMap.getOrDefault(flightId, new ArrayList<>());
+        return flightBookingsHashMap.get(flightId);
     }
 
     public List<List<Integer>> getAllPassengers() {
