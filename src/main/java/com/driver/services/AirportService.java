@@ -128,7 +128,7 @@ public class AirportService {
 
 
         if (passengersBooked != null && passengersBooked.contains(passengerId)) {
-            passengersBooked.remove(passengerId);
+            passengersBooked.remove((Integer) passengerId);
 
             return "SUCCESS";
         }
