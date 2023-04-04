@@ -18,8 +18,10 @@ public class AirportRepository {
     }
 
     public String addAirport(Airport airport) {
-        String key = airport.getAirportName();
-        airportHashMap.put(key, airport);
+        if(airport != null){
+            String key = airport.getAirportName();
+            airportHashMap.put(key, airport);
+        }
 
         return "SUCCESS";
     }
