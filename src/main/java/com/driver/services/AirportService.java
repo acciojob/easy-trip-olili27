@@ -153,16 +153,17 @@ public class AirportService {
 
     public String getAirportNameFromFlightId(Integer flightId){
         List<Flight> flights = flightRepository.getAllFlights();
-        City cityFrom = null;
 
-        for (Flight flight: flights) {
-            if (flight.getFlightId() == flightId) {
-                cityFrom = flight.getFromCity();
-                break;
+        if(flights != null){
+            for (Flight flight : flights) {
+                if (flight.getFlightId() == flightId) {
+                    City cityFrom = flight.getFromCity();
+                    return airportRepository.getAirportByCity(cityFrom).getAirportName();
+                }
             }
         }
 
-        return airportRepository.getAirportByCity(cityFrom).getAirportName();
+        return null;
     }
 
     public int calculateRevenueOfAFlight(Integer flightId){
