@@ -123,7 +123,6 @@ public class AirportService {
     public String cancelATicket(int flightId, int passengerId) {
         List<Integer> passengersBooked = flightRepository.getPassengersForParticularFlight(flightId);
 
-        Flight flight = flightRepository.getFlightById(flightId);
 
         if (passengersBooked != null && passengersBooked.contains(passengerId)) {
             passengersBooked.remove(passengerId);
