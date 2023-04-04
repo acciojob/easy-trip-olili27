@@ -1,5 +1,7 @@
-package com.driver;
+package com.driver.services;
 
+import com.driver.repositories.AirportRepository;
+import com.driver.repositories.FlightRepository;
 import com.driver.model.Airport;
 import com.driver.model.City;
 import com.driver.model.Flight;
@@ -15,11 +17,11 @@ import java.util.List;
 @Service
 public class AirportService {
 
-    @Autowired
-    AirportRepository airportRepository;
+//    @Autowired
+    AirportRepository airportRepository = new AirportRepository();
 
-    @Autowired
-    FlightRepository flightRepository;
+//    @Autowired
+    FlightRepository flightRepository = new FlightRepository();
 
     public String addAirport(Airport airport) {
         return airportRepository.addAirport(airport);

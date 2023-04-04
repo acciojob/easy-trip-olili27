@@ -5,7 +5,7 @@ import com.driver.model.Airport;
 import com.driver.model.City;
 import com.driver.model.Flight;
 import com.driver.model.Passenger;
-import com.driver.AirportService;
+import com.driver.services.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +14,8 @@ import java.util.Date;
 @RestController
 public class AirportController {
 
-    @Autowired
-    AirportService airportService;
+//    @Autowired
+    AirportService airportService = new AirportService();
 
     @PostMapping("/add_airport")
     public String addAirport(@RequestBody Airport airport){
