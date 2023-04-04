@@ -70,6 +70,9 @@ public class AirportService {
 
     public int getNumberOfPeopleOn(Date date, String airportName){
         Airport airport = airportRepository.getAirportByName(airportName);
+
+        if (airport == null) return 0;
+
         List<Flight> flightsForGivenCity = flightRepository.getFlightsByCity(airport.getCity());
         int numberOfPeople = 0;
 
