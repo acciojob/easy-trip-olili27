@@ -171,9 +171,12 @@ public class AirportService {
         int total = 0, count = numberOfPassengers;
 
         for (int i = 0; i < numberOfPassengers; i++) {
+            if (i == 0) {
+                total +=calculateFlightFare(flightId, 0);
+            } else {
             total +=calculateFlightFare(flightId, count);
-            count--;
         }
+            count--;
 
         return total;
     }
