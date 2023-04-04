@@ -174,9 +174,11 @@ public class AirportService {
             if (i == 0) {
                 total +=calculateFlightFare(flightId, 0);
             } else {
-            total +=calculateFlightFare(flightId, count);
-        }
+                total += calculateFlightFare(flightId, count);
+            }
+
             count--;
+        }
 
         return total;
     }
